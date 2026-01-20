@@ -1,0 +1,16 @@
+{
+  "Group": "com.barrelmod",
+  "Name": "BarrelMod",
+  "Version": "1.0.0",
+  "Description": "Storage Drawer-style barrels for storing large quantities of a single item type",
+  "Main": "com.barrelmod.BarrelModPlugin",
+  "Authors": [
+    {
+      "Name": "BarrelMod Team"
+    }
+  ],
+  "ServerVersion": "*",
+  "IncludesAssetPack": true,
+  "DisabledByDefault": false,
+  "Dependencies": {}
+}

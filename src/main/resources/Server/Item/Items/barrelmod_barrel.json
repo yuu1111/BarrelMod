@@ -1,0 +1,30 @@
+{
+  "TranslationProperties": {
+    "Name": "server.barrelmod_barrel.name"
+  },
+  "MaxStack": 64,
+  "Icon": "Icons/ItemsGenerated/barrelmod_barrel.png",
+  "Categories": ["Blocks.Functional"],
+  "PlayerAnimationsId": "Block",
+  "Set": "Wood_Oak",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Cube",
+    "Group": "Wood",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Wood",
+        "ItemId": "barrelmod_barrel"
+      }
+    },
+    "BlockParticleSetId": "Wood",
+    "Textures": [
+      {"Top": "BlockTextures/barrelmod_barrel_top.png"},
+      {"Bottom": "BlockTextures/barrelmod_barrel_bottom.png"},
+      {"All": "BlockTextures/barrelmod_barrel_side.png"}
+    ],
+    "BlockSoundSetId": "Wood",
+    "BlockBreakingDecalId": "Breaking_Decals_Wood"
+  }
+}
