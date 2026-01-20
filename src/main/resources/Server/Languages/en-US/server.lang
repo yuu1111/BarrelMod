@@ -1,8 +1,7 @@
+barrelmod_barrel.name = Storage Barrel
 barrelmod.barrel.empty=Empty
 barrelmod.barrel.stored=%s x %d
 barrelmod.barrel.full=Barrel is full!
 barrelmod.barrel.wrong_item=This barrel only accepts %s
 barrelmod.barrel.deposited=Deposited %d items
 barrelmod.barrel.withdrawn=Withdrawn %d items
-barrelmod.command.give.success=Gave %d barrel(s) to %s
-barrelmod.command.give.usage=Usage: /barrel give <player> [amount]

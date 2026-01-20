@@ -12,5 +12,8 @@
   "ServerVersion": "*",
   "IncludesAssetPack": true,
   "DisabledByDefault": false,
-  "Dependencies": {}
+  "Dependencies": {
+    "Hytale:EntityModule": "*",
+    "Hytale:AssetModule": "*"
+  }
 }
