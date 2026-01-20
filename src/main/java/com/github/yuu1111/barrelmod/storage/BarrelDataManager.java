@@ -14,6 +14,11 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * バレルデータの永続化を管理するクラス。
+ *
+ * <p>JSON形式でバレルデータをファイルシステムに保存・読み込みする。
+ */
 public class BarrelDataManager {
 
     private static final Logger LOGGER = Logger.getLogger("BarrelMod");
@@ -22,6 +27,11 @@ public class BarrelDataManager {
     private final Path dataFolder;
     private final Gson gson;
 
+    /**
+     * データマネージャーを作成する。
+     *
+     * @param dataFolder データ保存先ディレクトリ
+     */
     public BarrelDataManager(Path dataFolder) {
         this.dataFolder = dataFolder;
         this.gson = new GsonBuilder()
@@ -29,6 +39,11 @@ public class BarrelDataManager {
                 .create();
     }
 
+    /**
+     * ストレージから全てのバレルデータを読み込む。
+     *
+     * @param registry 読み込んだデータを登録するレジストリ
+     */
     public void loadAll(BarrelRegistry registry) {
         Path dataFile = dataFolder.resolve(DATA_FILE);
 
@@ -56,6 +71,11 @@ public class BarrelDataManager {
         }
     }
 
+    /**
+     * 全てのバレルデータをストレージに保存する。
+     *
+     * @param registry 保存対象のバレルを含むレジストリ
+     */
     public void saveAll(BarrelRegistry registry) {
         try {
             Files.createDirectories(dataFolder);
@@ -79,6 +99,7 @@ public class BarrelDataManager {
         }
     }
 
+    /** JSON永続化用の内部データ形式 */
     private static class BarrelDataJson {
         String id;
         int posX;

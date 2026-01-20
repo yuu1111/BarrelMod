@@ -7,10 +7,24 @@ import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.Message;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * バレルMODのメインコマンド。
+ *
+ * <p>サブコマンド:
+ * <ul>
+ *   <li>/barrel info - MOD情報を表示</li>
+ *   <li>/barrel save - バレルデータを保存</li>
+ * </ul>
+ */
 public class BarrelCommand extends AbstractCommand {
 
     private final BarrelModPlugin plugin;
 
+    /**
+     * コマンドを作成する。
+     *
+     * @param plugin プラグインインスタンス
+     */
     public BarrelCommand(BarrelModPlugin plugin) {
         super("barrel", "Barrel mod commands");
         this.plugin = plugin;
@@ -31,10 +45,11 @@ public class BarrelCommand extends AbstractCommand {
         context.sendMessage(Message.raw("/barrel save - Save barrel data"));
     }
 
+    /** MOD情報を表示するサブコマンド */
     private static class InfoSubCommand extends AbstractCommand {
         private final BarrelModPlugin plugin;
 
-        public InfoSubCommand(BarrelModPlugin plugin) {
+        InfoSubCommand(BarrelModPlugin plugin) {
             super("info", "Show mod information");
             this.plugin = plugin;
         }
@@ -50,10 +65,11 @@ public class BarrelCommand extends AbstractCommand {
         }
     }
 
+    /** バレルデータを保存するサブコマンド */
     private static class SaveSubCommand extends AbstractCommand {
         private final BarrelModPlugin plugin;
 
-        public SaveSubCommand(BarrelModPlugin plugin) {
+        SaveSubCommand(BarrelModPlugin plugin) {
             super("save", "Save barrel data");
             this.plugin = plugin;
         }

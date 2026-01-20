@@ -11,6 +11,8 @@ import com.hypixel.hytale.server.core.event.events.player.PlayerInteractEvent;
 import com.hypixel.hytale.server.core.event.events.ecs.PlaceBlockEvent;
 import com.hypixel.hytale.server.core.event.events.ecs.BreakBlockEvent;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
+import com.hypixel.hytale.server.core.inventory.Inventory;
+import com.hypixel.hytale.server.core.inventory.container.ItemContainer;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.protocol.InteractionType;
 
@@ -20,6 +22,12 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
+/**
+ * バレルブロックに関連するイベントを処理するリスナー。
+ *
+ * <p>プレイヤーのインタラクション、ブロック設置・破壊イベントを監視し、
+ * バレルへのアイテムの預け入れ・引き出し、バレルの登録・解除を行う。
+ */
 public class BarrelBlockListener {
 
     private static final String BARREL_ITEM_ID = "barrelmod_barrel";
@@ -27,10 +35,20 @@ public class BarrelBlockListener {
     private final BarrelModPlugin plugin;
     private final Map<UUID, PendingPlacement> pendingPlacements = new ConcurrentHashMap<>();
 
+    /**
+     * リスナーを作成する。
+     *
+     * @param plugin プラグインインスタンス
+     */
     public BarrelBlockListener(BarrelModPlugin plugin) {
         this.plugin = plugin;
     }
 
+    /**
+     * イベントリスナーを登録する。
+     *
+     * @param javaPlugin 登録先のプラグイン
+     */
     public void register(JavaPlugin javaPlugin) {
         javaPlugin.getEventRegistry().registerGlobal(PlayerInteractEvent.class, this::onPlayerInteract);
         javaPlugin.getEventRegistry().registerGlobal(PlaceBlockEvent.class, this::onBlockPlace);
@@ -172,6 +190,18 @@ public class BarrelBlockListener {
         int deposited = barrel.deposit(itemId, toDeposit);
 
         if (deposited > 0) {
+            try {
+                Inventory inventory = player.getInventory();
+                ItemContainer hotbar = inventory.getHotbar();
+                int remaining = toDeposit - deposited;
+                if (remaining > 0) {
+                    hotbar.addItemStack(new ItemStack(itemId, remaining));
+                }
+                hotbar.removeItemStack(heldItem);
+                plugin.getLogger().at(Level.INFO).log("Removed %d %s from player inventory", deposited, itemId);
+            } catch (Exception e) {
+                plugin.getLogger().at(Level.WARNING).log("Failed to update player inventory: %s", e.getMessage());
+            }
             player.sendMessage(Message.raw("Deposited " + deposited + " items. Total: " + barrel.getStoredAmount() + "/" + barrel.getMaxCapacity()));
             plugin.getLogger().at(Level.INFO).log("Player %s deposited %d %s into barrel",
                 player.getDisplayName(), deposited, itemId);
@@ -187,10 +217,20 @@ public class BarrelBlockListener {
         }
 
         String itemId = barrel.getStoredItemId();
-        int toWithdraw = 1;
+        int toWithdraw = 64;
         int withdrawn = barrel.withdraw(toWithdraw);
 
         if (withdrawn > 0) {
+            try {
+                Inventory inventory = player.getInventory();
+                ItemContainer storage = inventory.getStorage();
+                ItemStack withdrawnStack = new ItemStack(itemId, withdrawn);
+                storage.addItemStack(withdrawnStack);
+                plugin.getLogger().at(Level.INFO).log("Added %d %s to player inventory", withdrawn, itemId);
+            } catch (Exception e) {
+                plugin.getLogger().at(Level.WARNING).log("Failed to add items to player inventory: %s", e.getMessage());
+                barrel.deposit(itemId, withdrawn);
+            }
             player.sendMessage(Message.raw("Withdrawn " + withdrawn + " " + itemId + ". Remaining: " + barrel.getStoredAmount()));
             plugin.getLogger().at(Level.INFO).log("Player %s withdrew %d %s from barrel",
                 player.getDisplayName(), withdrawn, itemId);
@@ -205,6 +245,7 @@ public class BarrelBlockListener {
         }
     }
 
+    /** バレル設置待ちの状態を保持する内部クラス */
     private static class PendingPlacement {
         final UUID playerUuid;
         final long timestamp;
