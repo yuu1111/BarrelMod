@@ -3,7 +3,7 @@
     "Name": "server.barrelmod_barrel.name"
   },
   "MaxStack": 64,
-  "Icon": "Icons/ItemsGenerated/barrelmod_barrel.png",
+  "Icon": "Common/Icons/ItemsGenerated/barrelmod_barrel.png",
   "Categories": ["Blocks.Functional"],
   "PlayerAnimationsId": "Block",
   "Set": "Wood_Oak",
@@ -20,9 +20,9 @@
     },
     "BlockParticleSetId": "Wood",
     "Textures": [
-      {"Top": "BlockTextures/barrelmod_barrel_top.png"},
-      {"Bottom": "BlockTextures/barrelmod_barrel_bottom.png"},
-      {"All": "BlockTextures/barrelmod_barrel_side.png"}
+      {"Top": "Common/BlockTextures/barrelmod_barrel_top.png"},
+      {"Bottom": "Common/BlockTextures/barrelmod_barrel_bottom.png"},
+      {"All": "Common/BlockTextures/barrelmod_barrel_side.png"}
     ],
     "BlockSoundSetId": "Wood",
     "BlockBreakingDecalId": "Breaking_Decals_Wood"
