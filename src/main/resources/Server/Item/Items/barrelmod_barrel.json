@@ -20,9 +20,12 @@
     },
     "BlockParticleSetId": "Wood",
     "Textures": [{
-      "Top": "BlockTextures/barrelmod_barrel_top.png",
-      "Bottom": "BlockTextures/barrelmod_barrel_bottom.png",
-      "Sides": "BlockTextures/barrelmod_barrel_side.png"
+      "North": "BlockTextures/barrelmod_barrel_side.png",
+      "South": "BlockTextures/barrelmod_barrel_side.png",
+      "East": "BlockTextures/barrelmod_barrel_side.png",
+      "West": "BlockTextures/barrelmod_barrel_side.png",
+      "Up": "BlockTextures/barrelmod_barrel_side.png",
+      "Down": "BlockTextures/barrelmod_barrel_side.png"
     }],
     "BlockSoundSetId": "Wood",
     "BlockBreakingDecalId": "Breaking_Decals_Wood"
