@@ -9,10 +9,10 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * バレルのインメモリレジストリ。
+ * バレルのインメモリレジストリ
  *
- * <p>IDおよび座標によるバレルの高速検索を提供する。
- * スレッドセーフな実装で、マルチスレッド環境でも安全に使用可能。
+ * IDおよび座標によるバレルの高速検索を提供する
+ * スレッドセーフな実装で、マルチスレッド環境でも安全に使用可能
  */
 public class BarrelRegistry {
 
@@ -20,7 +20,7 @@ public class BarrelRegistry {
     private final Map<String, BarrelData> barrelsByLocation;
 
     /**
-     * 新しいレジストリを作成する。
+     * 新しいレジストリを作成する
      */
     public BarrelRegistry() {
         this.barrelsById = new ConcurrentHashMap<>();
@@ -28,7 +28,7 @@ public class BarrelRegistry {
     }
 
     /**
-     * 指定位置に新しいバレルを作成して登録する。
+     * 指定位置に新しいバレルを作成して登録する
      *
      * @param position ワールド座標
      * @param worldId ワールドID
@@ -41,7 +41,7 @@ public class BarrelRegistry {
     }
 
     /**
-     * バレルをレジストリに登録する。
+     * バレルをレジストリに登録する
      *
      * @param barrel 登録するバレル
      */
@@ -51,7 +51,7 @@ public class BarrelRegistry {
     }
 
     /**
-     * バレルをレジストリから登録解除する。
+     * バレルをレジストリから登録解除する
      *
      * @param barrel 登録解除するバレル
      */
@@ -61,41 +61,41 @@ public class BarrelRegistry {
     }
 
     /**
-     * IDでバレルを検索する。
+     * IDでバレルを検索する
      *
      * @param id バレルID
-     * @return バレルデータ。見つからない場合は空のOptional
+     * @return バレルデータ、見つからない場合は空のOptional
      */
     public Optional<BarrelData> getById(UUID id) {
         return Optional.ofNullable(barrelsById.get(id));
     }
 
     /**
-     * 座標でバレルを検索する。
+     * 座標でバレルを検索する
      *
      * @param position ワールド座標
      * @param worldId ワールドID
-     * @return バレルデータ。見つからない場合は空のOptional
+     * @return バレルデータ、見つからない場合は空のOptional
      */
     public Optional<BarrelData> getByPosition(Vector3i position, String worldId) {
         return Optional.ofNullable(barrelsByLocation.get(getLocationKey(position.x, position.y, position.z, worldId)));
     }
 
     /**
-     * 座標でバレルを検索する。
+     * 座標でバレルを検索する
      *
      * @param x X座標
      * @param y Y座標
      * @param z Z座標
      * @param worldId ワールドID
-     * @return バレルデータ。見つからない場合は空のOptional
+     * @return バレルデータ、見つからない場合は空のOptional
      */
     public Optional<BarrelData> getByPosition(int x, int y, int z, String worldId) {
         return Optional.ofNullable(barrelsByLocation.get(getLocationKey(x, y, z, worldId)));
     }
 
     /**
-     * 指定座標にバレルが存在するか確認する。
+     * 指定座標にバレルが存在するか確認する
      *
      * @param position ワールド座標
      * @param worldId ワールドID
@@ -106,7 +106,7 @@ public class BarrelRegistry {
     }
 
     /**
-     * 全てのバレルを取得する。
+     * 全てのバレルを取得する
      *
      * @return バレルのコレクション
      */
@@ -115,7 +115,7 @@ public class BarrelRegistry {
     }
 
     /**
-     * 登録されているバレルの数を取得する。
+     * 登録されているバレルの数を取得する
      *
      * @return バレル数
      */
@@ -124,7 +124,7 @@ public class BarrelRegistry {
     }
 
     /**
-     * 全てのバレルをクリアする。
+     * 全てのバレルをクリアする
      */
     public void clear() {
         barrelsById.clear();

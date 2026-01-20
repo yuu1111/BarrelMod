@@ -13,10 +13,9 @@ import java.nio.file.Path;
 import java.util.logging.Level;
 
 /**
- * Hytale用バレルストレージMODのメインプラグインクラス。
- *
- * <p>大容量のアイテムストレージとして機能するバレルブロックを追加する。
- * プラグインのライフサイクル管理、コマンド登録、イベントリスナー登録を行う。
+ * Hytale用バレルストレージMODのメインプラグインクラス
+ * 大容量のアイテムストレージとして機能するバレルブロックを追加する
+ * プラグインのライフサイクル管理、コマンド登録、イベントリスナー登録を行う
  */
 public class BarrelModPlugin extends JavaPlugin {
 
@@ -26,7 +25,7 @@ public class BarrelModPlugin extends JavaPlugin {
     private BarrelRegistry barrelRegistry;
 
     /**
-     * プラグインのコンストラクタ。
+     * プラグインのコンストラクタ
      *
      * @param init Hytaleから渡される初期化オブジェクト
      */
@@ -37,9 +36,8 @@ public class BarrelModPlugin extends JavaPlugin {
     }
 
     /**
-     * プラグインのセットアップ処理。
-     *
-     * <p>データマネージャー、レジストリの初期化、コマンドとイベントリスナーの登録を行う。
+     * プラグインのセットアップ処理
+     * データマネージャー、レジストリの初期化、コマンドとイベントリスナーの登録を行う
      */
     @Override
     protected void setup() {
@@ -58,9 +56,8 @@ public class BarrelModPlugin extends JavaPlugin {
     }
 
     /**
-     * プラグインの開始処理。
-     *
-     * <p>永続化されたバレルデータをストレージからロードする。
+     * プラグインの開始処理
+     * 永続化されたバレルデータをストレージからロードする
      */
     @Override
     protected void start() {
@@ -70,9 +67,8 @@ public class BarrelModPlugin extends JavaPlugin {
     }
 
     /**
-     * プラグインのシャットダウン処理。
-     *
-     * <p>全てのバレルデータをストレージに保存する。
+     * プラグインのシャットダウン処理
+     * 全てのバレルデータをストレージに保存する
      */
     @Override
     protected void shutdown() {
@@ -82,7 +78,7 @@ public class BarrelModPlugin extends JavaPlugin {
     }
 
     /**
-     * プラグインのシングルトンインスタンスを取得する。
+     * プラグインのシングルトンインスタンスを取得する
      *
      * @return プラグインインスタンス
      */
@@ -91,7 +87,7 @@ public class BarrelModPlugin extends JavaPlugin {
     }
 
     /**
-     * バレルデータマネージャーを取得する。
+     * バレルデータマネージャーを取得する
      *
      * @return データマネージャー
      */
@@ -100,7 +96,7 @@ public class BarrelModPlugin extends JavaPlugin {
     }
 
     /**
-     * バレルレジストリを取得する。
+     * バレルレジストリを取得する
      *
      * @return バレルレジストリ
      */

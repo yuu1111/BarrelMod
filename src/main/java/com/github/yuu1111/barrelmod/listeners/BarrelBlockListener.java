@@ -23,10 +23,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
 /**
- * バレルブロックに関連するイベントを処理するリスナー。
+ * バレルブロックに関連するイベントを処理するリスナー
  *
- * <p>プレイヤーのインタラクション、ブロック設置・破壊イベントを監視し、
- * バレルへのアイテムの預け入れ・引き出し、バレルの登録・解除を行う。
+ * プレイヤーのインタラクション、ブロック設置・破壊イベントを監視し、
+ * バレルへのアイテムの預け入れ・引き出し、バレルの登録・解除を行う
  */
 public class BarrelBlockListener {
 
@@ -36,7 +36,7 @@ public class BarrelBlockListener {
     private final Map<UUID, PendingPlacement> pendingPlacements = new ConcurrentHashMap<>();
 
     /**
-     * リスナーを作成する。
+     * リスナーを作成する
      *
      * @param plugin プラグインインスタンス
      */
@@ -45,7 +45,7 @@ public class BarrelBlockListener {
     }
 
     /**
-     * イベントリスナーを登録する。
+     * イベントリスナーを登録する
      *
      * @param javaPlugin 登録先のプラグイン
      */
@@ -58,9 +58,6 @@ public class BarrelBlockListener {
 
     private void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (player == null) {
-            return;
-        }
 
         Vector3i targetBlock = event.getTargetBlock();
         InteractionType actionType = event.getActionType();
@@ -245,7 +242,9 @@ public class BarrelBlockListener {
         }
     }
 
-    /** バレル設置待ちの状態を保持する内部クラス */
+    /**
+     * バレル設置待ちの状態を保持する内部クラス
+     */
     private static class PendingPlacement {
         final UUID playerUuid;
         final long timestamp;

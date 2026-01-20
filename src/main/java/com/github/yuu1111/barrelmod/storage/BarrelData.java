@@ -6,14 +6,15 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * バレルの状態を表すデータクラス。
- *
- * <p>バレルの位置、格納アイテム、容量、ロック状態などを管理する。
- * 各バレルは一意のUUIDで識別される。
+ * バレルの状態を表すデータクラス
+ * バレルの位置、格納アイテム、容量、ロック状態などを管理する
+ * 各バレルは一意のUUIDで識別される
  */
 public class BarrelData {
 
-    /** デフォルトの最大容量 */
+    /**
+     * デフォルトの最大容量
+     */
     public static final int DEFAULT_MAX_CAPACITY = 2048;
 
     private final UUID id;
@@ -29,7 +30,7 @@ public class BarrelData {
     private UUID ownerUuid;
 
     /**
-     * 新規バレルを作成する。
+     * 新規バレルを作成する
      *
      * @param position ワールド座標
      * @param worldId ワールドID
@@ -48,7 +49,7 @@ public class BarrelData {
     }
 
     /**
-     * 永続化データから復元するコンストラクタ。
+     * 永続化データから復元するコンストラクタ
      *
      * @param id バレルID
      * @param posX X座標
@@ -75,73 +76,99 @@ public class BarrelData {
         this.ownerUuid = ownerUuid;
     }
 
-    /** @return バレルの一意識別子 */
+    /**
+     * @return バレルの一意識別子
+     */
     public UUID getId() {
         return id;
     }
 
-    /** @return X座標 */
+    /**
+     * @return X座標
+     */
     public int getPosX() {
         return posX;
     }
 
-    /** @return Y座標 */
+    /**
+     * @return Y座標
+     */
     public int getPosY() {
         return posY;
     }
 
-    /** @return Z座標 */
+    /**
+     * @return Z座標
+     */
     public int getPosZ() {
         return posZ;
     }
 
-    /** @return ワールドID */
+    /**
+     * @return ワールドID
+     */
     public String getWorldId() {
         return worldId;
     }
 
-    /** @return 格納中のアイテムID。空の場合はnull */
+    /**
+     * @return 格納中のアイテムID、空の場合はnull
+     */
     public String getStoredItemId() {
         return storedItemId;
     }
 
-    /** @return 格納中のアイテム数量 */
+    /**
+     * @return 格納中のアイテム数量
+     */
     public int getStoredAmount() {
         return storedAmount;
     }
 
-    /** @return 最大容量 */
+    /**
+     * @return 最大容量
+     */
     public int getMaxCapacity() {
         return maxCapacity;
     }
 
-    /** @return ロック状態。trueの場合オーナー以外アクセス不可 */
+    /**
+     * @return ロック状態、trueの場合オーナー以外アクセス不可
+     */
     public boolean isLocked() {
         return locked;
     }
 
-    /** @return オーナーのUUID。未設定の場合はnull */
+    /**
+     * @return オーナーのUUID、未設定の場合はnull
+     */
     public UUID getOwnerUuid() {
         return ownerUuid;
     }
 
-    /** @param ownerUuid オーナーUUID */
+    /**
+     * @param ownerUuid オーナーUUID
+     */
     public void setOwnerUuid(UUID ownerUuid) {
         this.ownerUuid = ownerUuid;
     }
 
-    /** @param locked ロック状態 */
+    /**
+     * @param locked ロック状態
+     */
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
 
-    /** @param maxCapacity 最大容量 */
+    /**
+     * @param maxCapacity 最大容量
+     */
     public void setMaxCapacity(int maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
 
     /**
-     * バレルが空かどうかを判定する。
+     * バレルが空かどうかを判定する
      *
      * @return 空の場合true
      */
@@ -150,7 +177,7 @@ public class BarrelData {
     }
 
     /**
-     * バレルが満杯かどうかを判定する。
+     * バレルが満杯かどうかを判定する
      *
      * @return 満杯の場合true
      */
@@ -159,7 +186,7 @@ public class BarrelData {
     }
 
     /**
-     * 利用可能な空き容量を取得する。
+     * 利用可能な空き容量を取得する
      *
      * @return 空き容量
      */
@@ -168,9 +195,9 @@ public class BarrelData {
     }
 
     /**
-     * 指定アイテムを受け入れ可能か判定する。
+     * 指定アイテムを受け入れ可能か判定する
      *
-     * <p>バレルが空か、同じアイテムが格納されている場合に受け入れ可能。
+     * バレルが空か、同じアイテムが格納されている場合に受け入れ可能
      *
      * @param itemId アイテムID
      * @return 受け入れ可能な場合true
@@ -180,7 +207,7 @@ public class BarrelData {
     }
 
     /**
-     * アイテムをバレルに預け入れる。
+     * アイテムをバレルに預け入れる
      *
      * @param itemId アイテムID
      * @param amount 預け入れ数量
@@ -206,7 +233,7 @@ public class BarrelData {
     }
 
     /**
-     * アイテムをバレルから引き出す。
+     * アイテムをバレルから引き出す
      *
      * @param requestedAmount 引き出し希望数量
      * @return 実際に引き出した数量
@@ -219,16 +246,15 @@ public class BarrelData {
         int canWithdraw = Math.min(requestedAmount, storedAmount);
         storedAmount -= canWithdraw;
 
-        if (storedAmount <= 0) {
+        if (storedAmount == 0) {
             storedItemId = null;
-            storedAmount = 0;
         }
 
         return canWithdraw;
     }
 
     /**
-     * バレルの中身をクリアする。
+     * バレルの中身をクリアする
      */
     public void clear() {
         storedItemId = null;

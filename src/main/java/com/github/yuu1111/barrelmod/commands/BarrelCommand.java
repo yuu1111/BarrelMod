@@ -5,23 +5,23 @@ import com.github.yuu1111.barrelmod.BarrelModPlugin;
 import com.hypixel.hytale.server.core.command.system.AbstractCommand;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.Message;
+import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
+
 import java.util.concurrent.CompletableFuture;
 
 /**
- * バレルMODのメインコマンド。
+ * バレルMODのメインコマンド
  *
- * <p>サブコマンド:
- * <ul>
- *   <li>/barrel info - MOD情報を表示</li>
- *   <li>/barrel save - バレルデータを保存</li>
- * </ul>
+ * サブコマンド:
+ * - /barrel info: MOD情報を表示
+ * - /barrel save: バレルデータを保存
  */
 public class BarrelCommand extends AbstractCommand {
 
     private final BarrelModPlugin plugin;
 
     /**
-     * コマンドを作成する。
+     * コマンドを作成する
      *
      * @param plugin プラグインインスタンス
      */
@@ -34,7 +34,7 @@ public class BarrelCommand extends AbstractCommand {
     }
 
     @Override
-    protected CompletableFuture<Void> execute(CommandContext context) {
+    protected CompletableFuture<Void> execute(@NonNullDecl CommandContext context) {
         sendHelp(context);
         return CompletableFuture.completedFuture(null);
     }
@@ -45,7 +45,9 @@ public class BarrelCommand extends AbstractCommand {
         context.sendMessage(Message.raw("/barrel save - Save barrel data"));
     }
 
-    /** MOD情報を表示するサブコマンド */
+    /**
+     * MOD情報を表示するサブコマンド
+     */
     private static class InfoSubCommand extends AbstractCommand {
         private final BarrelModPlugin plugin;
 
@@ -58,6 +60,7 @@ public class BarrelCommand extends AbstractCommand {
         protected CompletableFuture<Void> execute(CommandContext context) {
             int barrelCount = plugin.getBarrelRegistry().getBarrelCount();
             context.sendMessage(Message.raw("=== Barrel Mod Info ==="));
+            // TODO : NO HARDCODE
             context.sendMessage(Message.raw("Version: 1.0.1"));
             context.sendMessage(Message.raw("Total barrels: " + barrelCount));
             context.sendMessage(Message.raw("Max capacity per barrel: 2048 items"));
@@ -65,7 +68,9 @@ public class BarrelCommand extends AbstractCommand {
         }
     }
 
-    /** バレルデータを保存するサブコマンド */
+    /**
+     * バレルデータを保存するサブコマンド
+     */
     private static class SaveSubCommand extends AbstractCommand {
         private final BarrelModPlugin plugin;
 
