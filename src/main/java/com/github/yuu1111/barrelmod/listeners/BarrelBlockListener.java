@@ -4,15 +4,19 @@ import com.github.yuu1111.barrelmod.BarrelModPlugin;
 import com.github.yuu1111.barrelmod.storage.BarrelData;
 import com.github.yuu1111.barrelmod.storage.BarrelRegistry;
 
+import com.hypixel.hytale.component.CommandBuffer;
+import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.math.vector.Vector3i;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
+import com.hypixel.hytale.server.core.entity.InteractionContext;
 import com.hypixel.hytale.server.core.entity.entities.Player;
-import com.hypixel.hytale.server.core.event.events.player.PlayerInteractEvent;
+import com.hypixel.hytale.server.core.event.events.ecs.UseBlockEvent;
 import com.hypixel.hytale.server.core.event.events.ecs.PlaceBlockEvent;
 import com.hypixel.hytale.server.core.event.events.ecs.BreakBlockEvent;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.inventory.Inventory;
 import com.hypixel.hytale.server.core.inventory.container.ItemContainer;
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.protocol.InteractionType;
 
@@ -50,21 +54,36 @@ public class BarrelBlockListener {
      * @param javaPlugin 登録先のプラグイン
      */
     public void register(JavaPlugin javaPlugin) {
-        javaPlugin.getEventRegistry().registerGlobal(PlayerInteractEvent.class, this::onPlayerInteract);
+        javaPlugin.getEventRegistry().registerGlobal(UseBlockEvent.Pre.class, this::onUseBlock);
         javaPlugin.getEventRegistry().registerGlobal(PlaceBlockEvent.class, this::onBlockPlace);
         javaPlugin.getEventRegistry().registerGlobal(BreakBlockEvent.class, this::onBlockBreak);
         plugin.getLogger().at(Level.INFO).log("BarrelBlockListener registered");
     }
 
-    private void onPlayerInteract(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
+    private void onUseBlock(UseBlockEvent.Pre event) {
+        InteractionContext context = event.getContext();
+
+        CommandBuffer<EntityStore> commandBuffer = context.getCommandBuffer();
+        if (commandBuffer == null) {
+            return;
+        }
+
+        Ref<EntityStore> entityRef = context.getEntity();
+        if (entityRef == null || !entityRef.isValid()) {
+            return;
+        }
+
+        Player player = (Player) commandBuffer.getComponent(entityRef, Player.getComponentType());
+        if (player == null) {
+            return;
+        }
 
         Vector3i targetBlock = event.getTargetBlock();
-        InteractionType actionType = event.getActionType();
-        ItemStack heldItem = event.getItemInHand();
+        InteractionType actionType = event.getInteractionType();
+        ItemStack heldItem = context.getHeldItem();
 
         plugin.getLogger().at(Level.INFO).log(
-            "PlayerInteractEvent: player=%s, pos=%s, action=%s, item=%s",
+            "UseBlockEvent.Pre: player=%s, pos=%s, action=%s, item=%s",
             player.getDisplayName(),
             targetBlock,
             actionType,
