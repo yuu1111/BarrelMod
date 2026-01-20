@@ -1,5 +1,3 @@
-server.barrelmod_barrel.name=ストレージバレル
-barrelmod.barrel.description=単一アイテムを大量に保存できるバレル。右クリックで収納、左クリックで取り出し。
 barrelmod.barrel.empty=空
 barrelmod.barrel.stored=%s x %d
 barrelmod.barrel.full=バレルがいっぱいです！

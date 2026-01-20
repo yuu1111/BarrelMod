@@ -1,5 +1,3 @@
-server.barrelmod_barrel.name=Storage Barrel
-barrelmod.barrel.description=A barrel that stores large quantities of a single item type. Right-click to deposit, left-click to withdraw.
 barrelmod.barrel.empty=Empty
 barrelmod.barrel.stored=%s x %d
 barrelmod.barrel.full=Barrel is full!

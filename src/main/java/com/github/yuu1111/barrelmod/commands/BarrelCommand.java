@@ -40,7 +40,7 @@ public class BarrelCommand extends AbstractCommand {
     }
 
     private static class GiveSubCommand extends AbstractCommand {
-        private static final String BARREL_ITEM_ID = "barrelmod_barrel";
+        private static final String BARREL_ITEM_ID = "BarrelMod_Barrel";
         private final BarrelModPlugin plugin;
         private final RequiredArg<PlayerRef> playerArg;
         private final DefaultArg<Integer> amountArg;
@@ -81,7 +81,7 @@ public class BarrelCommand extends AbstractCommand {
         protected CompletableFuture<Void> execute(CommandContext context) {
             int barrelCount = plugin.getBarrelRegistry().getBarrelCount();
             context.sendMessage(Message.raw("=== Barrel Mod Info ==="));
-            context.sendMessage(Message.raw("Version: 1.0.0"));
+            context.sendMessage(Message.raw("Version: 1.0.1"));
             context.sendMessage(Message.raw("Total barrels: " + barrelCount));
             context.sendMessage(Message.raw("Max capacity per barrel: 2048 items"));
             return CompletableFuture.completedFuture(null);

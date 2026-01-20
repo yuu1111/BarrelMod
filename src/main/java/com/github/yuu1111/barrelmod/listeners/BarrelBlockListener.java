@@ -22,7 +22,7 @@ import java.util.logging.Level;
 
 public class BarrelBlockListener {
 
-    private static final String BARREL_ITEM_ID = "barrelmod_barrel";
+    private static final String BARREL_ITEM_ID = "BarrelMod_Barrel";
 
     private final BarrelModPlugin plugin;
     private final Map<UUID, PendingPlacement> pendingPlacements = new ConcurrentHashMap<>();
