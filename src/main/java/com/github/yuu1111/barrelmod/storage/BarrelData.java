@@ -1,4 +1,4 @@
-package com.barrelmod.storage;
+package com.github.yuu1111.barrelmod.storage;
 
 import com.hypixel.hytale.math.vector.Vector3i;
 

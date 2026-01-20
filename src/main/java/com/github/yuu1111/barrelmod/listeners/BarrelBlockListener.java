@@ -1,8 +1,8 @@
-package com.barrelmod.listeners;
+package com.github.yuu1111.barrelmod.listeners;
 
-import com.barrelmod.BarrelModPlugin;
-import com.barrelmod.storage.BarrelData;
-import com.barrelmod.storage.BarrelRegistry;
+import com.github.yuu1111.barrelmod.BarrelModPlugin;
+import com.github.yuu1111.barrelmod.storage.BarrelData;
+import com.github.yuu1111.barrelmod.storage.BarrelRegistry;
 
 import com.hypixel.hytale.math.vector.Vector3i;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;

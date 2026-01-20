@@ -1,6 +1,6 @@
-package com.barrelmod.commands;
+package com.github.yuu1111.barrelmod.commands;
 
-import com.barrelmod.BarrelModPlugin;
+import com.github.yuu1111.barrelmod.BarrelModPlugin;
 
 import com.hypixel.hytale.server.core.command.system.AbstractCommand;
 import com.hypixel.hytale.server.core.command.system.CommandContext;

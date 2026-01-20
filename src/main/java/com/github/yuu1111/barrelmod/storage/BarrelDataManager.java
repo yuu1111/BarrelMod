@@ -1,4 +1,4 @@
-package com.barrelmod.storage;
+package com.github.yuu1111.barrelmod.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

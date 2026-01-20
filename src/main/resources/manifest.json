@@ -1,12 +1,12 @@
 {
-  "Group": "com.barrelmod",
+  "Group": "com.github.yuu1111.barrelmod",
   "Name": "BarrelMod",
   "Version": "1.0.0",
   "Description": "Storage Drawer-style barrels for storing large quantities of a single item type",
-  "Main": "com.barrelmod.BarrelModPlugin",
+  "Main": "com.github.yuu1111.barrelmod.BarrelModPlugin",
   "Authors": [
     {
-      "Name": "BarrelMod Team"
+      "Name": "yuu1111"
     }
   ],
   "ServerVersion": "*",

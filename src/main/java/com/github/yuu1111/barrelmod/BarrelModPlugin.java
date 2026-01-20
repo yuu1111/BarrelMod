@@ -1,9 +1,9 @@
-package com.barrelmod;
+package com.github.yuu1111.barrelmod;
 
-import com.barrelmod.commands.BarrelCommand;
-import com.barrelmod.listeners.BarrelBlockListener;
-import com.barrelmod.storage.BarrelDataManager;
-import com.barrelmod.storage.BarrelRegistry;
+import com.github.yuu1111.barrelmod.commands.BarrelCommand;
+import com.github.yuu1111.barrelmod.listeners.BarrelBlockListener;
+import com.github.yuu1111.barrelmod.storage.BarrelDataManager;
+import com.github.yuu1111.barrelmod.storage.BarrelRegistry;
 
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
